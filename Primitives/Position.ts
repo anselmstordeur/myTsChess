@@ -4,21 +4,21 @@
 
 export class Position {
 
-  row: number;
-  column: number;
+  public row: number;
+  public column: number;
 
   /**
    * Creates a new Position
    * @param x
    * @param y
    */
-  constructor(x: number, y: number){
+  constructor(x: number, y: number) {
 
-    if(typeof x !== 'number'){
+    if (typeof x !== 'number') {
       throw new Error('Position\'s row is not of type number');
     }
 
-    if(typeof y !== 'number'){
+    if (typeof y !== 'number') {
       throw new Error('Position\'s column is not of type number');
     }
 

@@ -1,37 +1,33 @@
 /**
  * Created by Anselm Stordeur on 11/24/16.
  */
-import { Board } from './Board';
-import { Player } from './Player';
-import { Position } from './Primitives/Position';
-import { Bishop } from './Pieces/Bishop';
-import { King } from './Pieces/King';
-import { Knight } from './Pieces/Knight';
-import { Pawn } from './Pieces/Pawn';
-import { Queen } from './Pieces/Queen';
-import { Rook } from './Pieces/Rook';
-
+import {Board} from "./Board";
+import {Piece} from "./Piece";
+import {Bishop} from "./Pieces/Bishop";
+import {King} from "./Pieces/King";
+import {Knight} from "./Pieces/Knight";
+import {Pawn} from "./Pieces/Pawn";
+import {Queen} from "./Pieces/Queen";
+import {Rook} from "./Pieces/Rook";
+import {Player} from "./Player";
+import {Position} from "./Primitives/Position";
 
 export class Game {
 
-  moveCounter: number;
-  moves: string;
-  board: Board;
-  playedBy: Player[];
+  private board: Board;
+  private playedBy: Player[];
+  private moveCounter: number;
+  private moves: string;
 
   /**
    * Creates a new Game
-   * @param {Player} players - Array of Players. We expect the first one to be the bottom player
    */
-  constructor(players: Player[]){
+  constructor(gameId: string) {
 
-    if(players.length !== 2){
-      throw new Error('Expected 2 Players');
-    }
-
-    this.moves = '';
+    this.playedBy = [(new Player('first', 'white')), (new Player('second', 'black'))];
     this.moveCounter = 0;
-    this.playedBy = players;
+    this.moves = '';
+    this.gameId = gameId;
 
     this.initBoard();
   }
@@ -39,13 +35,13 @@ export class Game {
   /**
    * Creates the starting Formation for a standard 8x8 Chess
    */
-  initBoard(){
+  public initBoard() {
     this.board = new Board();
     let board = this.board;
     let players = this.playedBy;
 
     // set the rows of paws by iterating through each column
-    for(let i = 0; i < this.board.columns; i++){
+    for (let i = 0; i < this.board.getColumns(); i++) {
       // top pawn
       board.setPiece(new Pawn(new Position(6, i), players[1]));
       // bottom pawn
@@ -79,8 +75,26 @@ export class Game {
     board.setPiece(new Queen(new Position(7, 3), players[1]));
   }
 
-  makeMove(notation){
+  public makeMove(notation: string) {
     // TODO: implement notation parsing and validation -> make move
+  }
+
+  public getBoard(): Board {
+    return this.board;
+  }
+
+  public printBoard() {
+    this.board.getFields().forEach(function (row: Piece[]) {
+      let output: string[] = row.map(function (piece: Piece) {
+        return piece.getType() + ' '.repeat(6 - piece.getType().length);
+      });
+      //noinspection TsLint
+      console.log(output.join(', '));
+    });
+
+    // select row, column
+    //noinspection TsLint
+    console.log(game.board.fields[0][3].type);
   }
 
 }

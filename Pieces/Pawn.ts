@@ -1,9 +1,9 @@
 /**
  * Created by Anselm Stordeur on 11/24/16.
  */
-import { Piece } from '../Piece';
-import { Position } from '../Primitives/Position';
-import { Player } from '../Player';
+import {Piece} from "../Piece";
+import {Player} from "../Player";
+import {Position} from "../Primitives/Position";
 
 export class Pawn extends Piece {
 
@@ -15,7 +15,7 @@ export class Pawn extends Piece {
    * @param {boolean} options.captured
    * @param {boolean} options.moved
    */
-  constructor(position: Position, player: Player, options?){
+  constructor(position: Position, player: Player, options?) {
     super('Pawn', position, player, options);
   }
 
