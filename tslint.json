@@ -2,7 +2,8 @@
   "extends": "tslint:latest",
   "rules": {
     "quotemark": false,
-    "only-arrow-functions": false
+    "only-arrow-functions": false,
+    "no-trailing-whitespace": false
   },
   "jsRules": {
   }
