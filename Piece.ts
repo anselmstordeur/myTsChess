@@ -2,6 +2,7 @@
  * Created by Anselm Stordeur on 11/24/16.
  */
 import {Player} from "./Player";
+import {Move} from "./Primitives/Move";
 import {Position} from "./Primitives/Position";
 
 export abstract class Piece {
@@ -53,5 +54,11 @@ export abstract class Piece {
   public getType(): string {
     return this.type;
   }
+
+  public getPlayer(): Player {
+    return this.belongsTo;
+  }
+
+  public abstract isValidMove(move: Move, fields: Piece[][]): boolean;
 
 }

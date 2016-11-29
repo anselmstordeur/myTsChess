@@ -4,8 +4,8 @@
 
 export class Position {
 
-  public row: number;
-  public column: number;
+  private row: number;
+  private column: number;
 
   /**
    * Creates a new Position
@@ -24,6 +24,18 @@ export class Position {
 
     this.row = x;
     this.column = y;
+  }
+
+  public getRow(): number {
+    return this.row;
+  }
+
+  public getColumn(): number {
+    return this.column;
+  }
+
+  public substract(other: Position): Position {
+    return new Position(this.getRow() - other.getRow(), this.getColumn() - other.getColumn());
   }
 
 }

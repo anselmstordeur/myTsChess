@@ -25,4 +25,8 @@ export class Player {
     return this.color;
   }
 
+  public equals(other: Player): boolean {
+    return this.getId() === other.getId();
+  }
+
 }
