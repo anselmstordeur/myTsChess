@@ -5,10 +5,10 @@ import {Piece} from "./Piece";
 
 export class Board {
 
-  private flipped: boolean;
-  private fields: Piece[][];
-  private rows: number;
   private columns: number;
+  private pieces: Piece[];
+  private flipped: boolean;
+  private rows: number;
 
   /**
    * Creates the board
@@ -35,15 +35,22 @@ export class Board {
       }
     }
 
-    let fields: Piece[][] = [];
-    for (let i = 0; i < columns; i++) {
-      fields[i] = new Array<Piece>(rows); // this is a column
-    }
-
-    this.fields = fields;
+    this.pieces = [];
     this.rows = rows;
     this.columns = columns;
     this.flipped = flipped;
+  }
+
+  public getColumns(): number {
+    return this.columns;
+  }
+
+  public getPieces(): Piece[] {
+    return this.pieces;
+  }
+
+  public getRows(): number {
+    return this.rows;
   }
 
   /**
@@ -51,19 +58,6 @@ export class Board {
    * @param piece
    */
   public setPiece(piece: Piece) {
-    this.fields[piece.getPosition().row][piece.getPosition().column] = piece;
+    this.pieces.push(piece);
   }
-
-  public getRows(): number {
-    return this.rows;
-  }
-
-  public getColumns(): number {
-    return this.columns;
-  }
-
-  public getFields(): Piece[][] {
-    return this.fields;
-  }
-
 }

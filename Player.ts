@@ -4,8 +4,8 @@
 
 export class Player {
 
-  private id: string;
   private color: string;
+  private id: string;
 
   /**
    * Creates a new Player
@@ -13,20 +13,20 @@ export class Player {
    * @param {String} color
    */
   constructor(id: string, color: string) {
-    this.id = id;
     this.color = color;
+    this.id = id;
   }
 
-  public getId(): string {
-    return this.id;
+  public equals(other: Player): boolean {
+    return this.getId() === other.getId();
   }
 
   public getColor(): string {
     return this.color;
   }
 
-  public equals(other: Player): boolean {
-    return this.getId() === other.getId();
+  public getId(): string {
+    return this.id;
   }
 
 }

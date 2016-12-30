@@ -6,18 +6,20 @@ import {Piece} from "./Piece";
 import {Bishop} from "./Pieces/Bishop";
 import {King} from "./Pieces/King";
 import {Knight} from "./Pieces/Knight";
+import {Move} from "./Primitives/Move";
 import {Pawn} from "./Pieces/Pawn";
 import {Queen} from "./Pieces/Queen";
 import {Rook} from "./Pieces/Rook";
 import {Player} from "./Player";
-import {Position} from "./Primitives/Position";
+import {Vector} from "./Primitives/Vector";
 
 export class Game {
 
   private board: Board;
-  private playedBy: Player[];
+  private gameId: string;
   private moveCounter: number;
   private moves: string;
+  private playedBy: Player[];
 
   /**
    * Creates a new Game
@@ -32,6 +34,10 @@ export class Game {
     this.initBoard();
   }
 
+  public getBoard(): Board {
+    return this.board;
+  }
+
   /**
    * Creates the starting Formation for a standard 8x8 Chess
    */
@@ -43,58 +49,48 @@ export class Game {
     // set the rows of paws by iterating through each column
     for (let i = 0; i < this.board.getColumns(); i++) {
       // top pawn
-      board.setPiece(new Pawn(new Position(6, i), players[1]));
+      board.setPiece(new Pawn(new Vector(6, i), players[1]));
       // bottom pawn
-      board.setPiece(new Pawn(new Position(1, i), players[0]));
+      board.setPiece(new Pawn(new Vector(1, i), players[0]));
     }
 
     // set the 4 Rooks
-    board.setPiece(new Rook(new Position(0, 0), players[0]));
-    board.setPiece(new Rook(new Position(0, 7), players[0]));
-    board.setPiece(new Rook(new Position(7, 0), players[1]));
-    board.setPiece(new Rook(new Position(7, 7), players[1]));
+    board.setPiece(new Rook(new Vector(0, 0), players[0]));
+    board.setPiece(new Rook(new Vector(0, 7), players[0]));
+    board.setPiece(new Rook(new Vector(7, 0), players[1]));
+    board.setPiece(new Rook(new Vector(7, 7), players[1]));
 
     // set the 4 Knights
-    board.setPiece(new Knight(new Position(0, 1), players[0]));
-    board.setPiece(new Knight(new Position(0, 6), players[0]));
-    board.setPiece(new Knight(new Position(7, 1), players[1]));
-    board.setPiece(new Knight(new Position(7, 6), players[1]));
+    board.setPiece(new Knight(new Vector(0, 1), players[0]));
+    board.setPiece(new Knight(new Vector(0, 6), players[0]));
+    board.setPiece(new Knight(new Vector(7, 1), players[1]));
+    board.setPiece(new Knight(new Vector(7, 6), players[1]));
 
     // set the 4 Bishops
-    board.setPiece(new Bishop(new Position(0, 2), players[0]));
-    board.setPiece(new Bishop(new Position(0, 5), players[0]));
-    board.setPiece(new Bishop(new Position(7, 2), players[1]));
-    board.setPiece(new Bishop(new Position(7, 5), players[1]));
+    board.setPiece(new Bishop(new Vector(0, 2), players[0]));
+    board.setPiece(new Bishop(new Vector(0, 5), players[0]));
+    board.setPiece(new Bishop(new Vector(7, 2), players[1]));
+    board.setPiece(new Bishop(new Vector(7, 5), players[1]));
 
     // set Kings
-    board.setPiece(new King(new Position(0, 4), players[0]));
-    board.setPiece(new King(new Position(7, 4), players[1]));
+    board.setPiece(new King(new Vector(0, 4), players[0]));
+    board.setPiece(new King(new Vector(7, 4), players[1]));
 
     // set Queens
-    board.setPiece(new Queen(new Position(0, 3), players[0]));
-    board.setPiece(new Queen(new Position(7, 3), players[1]));
+    board.setPiece(new Queen(new Vector(0, 3), players[0]));
+    board.setPiece(new Queen(new Vector(7, 3), players[1]));
   }
 
-  public makeMove(notation: string) {
+  public makeMove(move: Move) {
+    // TODO: implement moving
+  }
+
+  public makeMoveFromNotation(notation: string) {
     // TODO: implement notation parsing and validation -> make move
   }
 
-  public getBoard(): Board {
-    return this.board;
-  }
-
   public printBoard() {
-    this.board.getFields().forEach(function (row: Piece[]) {
-      let output: string[] = row.map(function (piece: Piece) {
-        return piece.getType() + ' '.repeat(6 - piece.getType().length);
-      });
-      //noinspection TsLint
-      console.log(output.join(', '));
-    });
-
-    // select row, column
-    //noinspection TsLint
-    console.log(game.board.fields[0][3].type);
+    // TODO: update the implementation to suit the new getPieces function
   }
 
 }

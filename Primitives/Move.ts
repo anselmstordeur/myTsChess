@@ -2,12 +2,13 @@
  * Created by Anselm Stordeur on 11/29/16.
  */
 import {Piece} from "../Piece";
-import {Position} from "./Position";
+import {Vector} from "./Vector";
 
 export class Move {
-  private from: Position;
-  private to: Position;
+
+  private from: Vector;
   private piece: Piece;
+  private to: Vector;
 
   /**
    * Creates a simple Move
@@ -15,25 +16,25 @@ export class Move {
    * @param to
    * @param piece
    */
-  constructor(from: Position, to: Position, piece: Piece) {
+  constructor(from: Vector, to: Vector, piece: Piece) {
     this.from = from;
     this.to = to;
     this.piece = piece;
   }
 
-  public getFrom() {
+  public getFrom(): Vector {
     return this.from;
   }
 
-  public getTo() {
+  public getTo(): Vector {
     return this.to;
   }
 
-  public getPiece() {
+  public getPiece(): Piece {
     return this.piece;
   }
 
-  public getMovingVector(): Position {
+  public getMovingVector(): Vector {
     return this.to.substract(this.from);
   }
 

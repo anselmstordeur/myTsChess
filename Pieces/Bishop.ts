@@ -4,31 +4,31 @@
 import {Piece} from "../Piece";
 import {Player} from "../Player";
 import {Move} from "../Primitives/Move";
-import {Position} from "../Primitives/Position";
+import {Vector} from "../Primitives/Vector";
 
 export class Bishop extends Piece {
 
   /**
    * Creates a new Bishop
-   * @param {Position} position
+   * @param {Vector} position
    * @param {Player} player
    * @param {object} options
    * @param {boolean} options.captured
    * @param {boolean} options.moved
    */
-  constructor(position: Position, player: Player, options?) {
+  constructor(position: Vector, player: Player, options?) {
     super('Bishop', position, player, options);
   }
 
   public isValidMove(move: Move, fields: Piece[][]): boolean {
 
-    let movingVector: Position = move.getMovingVector();
+    let movingVector: Vector = move.getMovingVector();
     let steps: number = Math.abs(movingVector.getColumn());
 
     // Moving diagonal and more than 0?
     if (Math.abs(movingVector.getRow()) === Math.abs(movingVector.getColumn()) && steps > 0) {
 
-      let startingPosition: Position = move.getPiece().getPosition();
+      let startingPosition: Vector = move.getPiece().getPosition();
 
       // go through all pieces on the way
       for (let i = 1; i < Math.abs(movingVector.getRow()); i++) {

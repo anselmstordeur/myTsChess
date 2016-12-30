@@ -3,11 +3,11 @@
  */
 import {Player} from "./Player";
 import {Move} from "./Primitives/Move";
-import {Position} from "./Primitives/Position";
+import {Vector} from "./Primitives/Vector";
 
 export abstract class Piece {
 
-  private position: Position;
+  private position: Vector;
   private belongsTo: Player;
   private type: string;
   private captured: boolean;
@@ -16,13 +16,13 @@ export abstract class Piece {
   /**
    * Creates a new Piece
    * @param {string} type
-   * @param {Position} position
+   * @param {Vector} position
    * @param {Player} player
    * @param {object} options
    * @param {boolean} options.captured
    * @param {boolean} options.moved
    */
-  constructor(type: string, position: Position, player: Player, options) {
+  constructor(type: string, position: Vector, player: Player, options) {
 
     let captured = false;
     let moved = false;
@@ -47,16 +47,16 @@ export abstract class Piece {
     this.moved = moved;
   }
 
-  public getPosition(): Position {
+  public getPlayer(): Player {
+    return this.belongsTo;
+  }
+
+  public getPosition(): Vector {
     return this.position;
   }
 
   public getType(): string {
     return this.type;
-  }
-
-  public getPlayer(): Player {
-    return this.belongsTo;
   }
 
   public abstract isValidMove(move: Move, fields: Piece[][]): boolean;
