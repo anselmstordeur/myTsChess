@@ -3,7 +3,8 @@
   "rules": {
     "quotemark": false,
     "only-arrow-functions": false,
-    "no-trailing-whitespace": false
+    "no-trailing-whitespace": false,
+    "no-unused-expression": false
   },
   "jsRules": {
   }
